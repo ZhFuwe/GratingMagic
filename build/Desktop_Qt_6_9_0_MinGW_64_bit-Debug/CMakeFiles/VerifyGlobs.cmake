@@ -41,6 +41,13 @@ endif()
 # _directory_contents at D:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/QTprojects/GratingMagic/*.cpp")
 set(OLD_GLOB
+  "D:/QTprojects/GratingMagic/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  "D:/QTprojects/GratingMagic/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/EWIEGA46WW/moc_ImageProcessor.cpp"
+  "D:/QTprojects/GratingMagic/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/EWIEGA46WW/moc_mainwindow.cpp"
+  "D:/QTprojects/GratingMagic/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp"
+  "D:/QTprojects/GratingMagic/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/mocs_compilation.cpp"
+  "D:/QTprojects/GratingMagic/GratingMagic/main.cpp"
+  "D:/QTprojects/GratingMagic/GratingMagic/mainwindow.cpp"
   "D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/EWIEGA46WW/moc_ImageProcessor.cpp"
   "D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/EWIEGA46WW/moc_mainwindow.cpp"
@@ -66,6 +73,8 @@ endif()
 # _directory_contents at D:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/QTprojects/GratingMagic/*.h")
 set(OLD_GLOB
+  "D:/QTprojects/GratingMagic/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/moc_predefs.h"
+  "D:/QTprojects/GratingMagic/GratingMagic/mainwindow.h"
   "D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/moc_predefs.h"
   "D:/QTprojects/GratingMagic/mainwindow.h"
   )
@@ -149,6 +158,7 @@ endif()
 # _directory_contents at D:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "D:/QTprojects/GratingMagic/*.qrc")
 set(OLD_GLOB
+  "D:/QTprojects/GratingMagic/GratingMagic/resources.qrc"
   "D:/QTprojects/GratingMagic/resources.qrc"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

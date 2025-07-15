@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
         }
     }
     MainWindow w;
+    w.setFixedSize(900, 680);
     w.show();
     return a.exec();
 }
