@@ -8,7 +8,7 @@
   <h2 align="center" style="font-weight: 600">GratingMagic</h2>
 
 <p align="center">
-  <strong>一款强大、直观的光栅卡图像合成工具</strong>
+  <strong>一款易用、强大的光栅卡图像合成工具</strong>
   <br>
   轻松将您的图像序列转换为具有动态效果的、可供专业打印的光栅图像。
 </p>
