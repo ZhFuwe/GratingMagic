@@ -20,11 +20,12 @@
 #include <QDebug>
 #include <QDoubleSpinBox>
 #include <algorithm>
+#include <QTextBrowser>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    setWindowTitle("GratingMagic - 光栅卡制作工具 (v1.4.0)");
+    setWindowTitle("GratingMagic - 光栅卡制作工具 (v1.4.2)");
     resize(900, 680);
     setMinimumSize(850, 650);
 
@@ -60,9 +61,14 @@ void MainWindow::setupUI()
     int rightPanelWidth = 310;
 
     // --- 控制面板: 图像管理 ---
-    importButton = new QPushButton(" 导入图像...", centralWidget);
-    importButton->setGeometry(rightPanelX, 10, rightPanelWidth, 35);
-
+    int importButtonWidth = rightPanelWidth - 40;
+    importButton = new QPushButton("导入图像...", centralWidget);
+    importButton->setGeometry(rightPanelX, 10, importButtonWidth, 35);
+    importButton->setIcon(this->style()->standardIcon(QStyle::SP_DirOpenIcon));
+    helpButton = new QPushButton(centralWidget);
+    helpButton->setGeometry(rightPanelX + importButtonWidth + 5, 10, 35, 35);
+    helpButton->setIcon(this->style()->standardIcon(QStyle::SP_DialogHelpButton));
+    helpButton->setToolTip("查看操作指南"); // 添加鼠标悬停提示
     imageListWidget = new QListWidget(centralWidget);
     imageListWidget->setGeometry(rightPanelX, 55, rightPanelWidth, 250);
     imageListWidget->setIconSize(QSize(64, 64));
@@ -156,6 +162,7 @@ void MainWindow::setupConnections()
 {
     // 连接UI控件信号到对应槽函数
     connect(importButton, &QPushButton::clicked, this, &MainWindow::importImages);
+    connect(helpButton, &QPushButton::clicked, this, &MainWindow::showHelpDialog);
     connect(deleteButton, &QPushButton::clicked, this, &MainWindow::deleteSelectedImage);
     connect(moveUpButton, &QPushButton::clicked, this, &MainWindow::moveImageUp);
     connect(moveDownButton, &QPushButton::clicked, this, &MainWindow::moveImageDown);
@@ -207,36 +214,81 @@ void MainWindow::importImages()
     schedulePreviewUpdate();
 }
 
+void MainWindow::showHelpDialog()
+{
+    // 创建对话框
+    QDialog* helpDialog = new QDialog(this);
+    helpDialog->setWindowTitle("操作指南");
+    helpDialog->setMinimumSize(600, 500);
+    QTextBrowser* textBrowser = new QTextBrowser(helpDialog);
+
+    // 加载帮助文本
+    QFile helpFile(":/docs/help_guide.md");
+    if (helpFile.open(QFile::ReadOnly | QFile::Text)) {
+        QTextStream in(&helpFile);
+        textBrowser->setMarkdown(in.readAll());
+        helpFile.close();
+    } else {
+        textBrowser->setText("错误：无法加载帮助文件 ':/docs/help_guide.md'。");
+    }
+
+    // UI
+    QPushButton* closeButton = new QPushButton("关闭", helpDialog);
+    connect(closeButton, &QPushButton::clicked, helpDialog, &QDialog::accept);
+    QVBoxLayout* layout = new QVBoxLayout(helpDialog);
+    layout->addWidget(textBrowser);
+    layout->addWidget(closeButton, 0, Qt::AlignCenter);
+
+    // 以模态方式显示对话框
+    helpDialog->exec();
+}
+
 void MainWindow::onPrintSizeEditingFinished()
 {
-    double desiredWidth = desiredPrintSizeSpinBox->value();
+    // 防止因弹窗导致焦点丢失而重复触发此槽函数
+    desiredPrintSizeSpinBox->blockSignals(true);
+
+    // 获取输入，无效则重置
+    double desiredSize = desiredPrintSizeSpinBox->value();
     if (originalImages.isEmpty()) {
         desiredPrintSizeSpinBox->setValue(0.0);
+        desiredPrintSizeSpinBox->blockSignals(false); // 解除阻塞
         return;
     }
-    if (desiredWidth <= 0.0) {
+
+    // 如果清空了输入框
+    if (desiredSize <= 0.0) {
         revertScaling();
         schedulePreviewUpdate();
+        desiredPrintSizeSpinBox->blockSignals(false);
         return;
     }
 
-    QSize targetPixelSize = calculateTargetPixels(desiredWidth);
+    // 计算目标像素宽度并比较
+    QSize targetPixelSize = calculateTargetPixels(desiredSize);
     QSize currentPixelSize = processedImages.first().size();
+    if (targetPixelSize == currentPixelSize) {
+        qDebug() << "Size already matches, no scaling needed.";
+        desiredPrintSizeSpinBox->blockSignals(false);
+        return;
+    }
 
-    if (targetPixelSize == currentPixelSize) return;
-
-    QString message = QString("图像将被缩放到 %1 x %2 像素以匹配打印尺寸。\n"
-                              "当前工作图像尺寸为 %3 x %4 像素。\n\n"
-                              "此操作不会改变源文件大小，是否继续？")
+    // 确认是否进行缩放
+    QString message = QString("图像将被缩放到 %1 像素宽以匹配您设置的打印尺寸。\n"
+                              "当前工作图像宽度为 %2 像素。\n\n"
+                              "此操作将基于原始导入的图像进行，并且不会修改源文件\n是否继续？")
                           .arg(targetPixelSize.width()).arg(targetPixelSize.height())
                           .arg(currentPixelSize.width()).arg(currentPixelSize.height());
 
-    if (QMessageBox::question(this, "尺寸调整", message, QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes) {
+    if (QMessageBox::question(this, "尺寸调整确认", message, QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes) {
         applyScaling(targetPixelSize);
         schedulePreviewUpdate();
     } else {
         desiredPrintSizeSpinBox->setValue(0.0);
     }
+
+    // 解除信号阻塞
+    desiredPrintSizeSpinBox->blockSignals(false);
 }
 
 void MainWindow::saveFinalImage()

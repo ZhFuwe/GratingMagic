@@ -2,4 +2,7 @@
     <qresource prefix="/styles">
         <file>stylesheet.qss</file>
     </qresource>
+    <qresource prefix="/docs">
+        <file>help_guide.md</file>
+    </qresource>
 </RCC>

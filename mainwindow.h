@@ -75,6 +75,11 @@ private slots:
      */
     void onPrintSizeEditingFinished();
 
+    /**
+     * @brief 显示帮助。
+     */
+    void showHelpDialog();
+
 private:
     // === 数据模型 ===
 
@@ -89,6 +94,7 @@ private:
     QScrollArea* scrollArea;
     QLabel* previewLabel;
     QPushButton* importButton;
+    QPushButton* helpButton;
     QListWidget* imageListWidget;
     QPushButton* moveUpButton;
     QPushButton* moveDownButton;

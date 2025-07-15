@@ -200,7 +200,7 @@ build GratingMagic_autogen/timestamp GratingMagic_autogen/mocs_compilation.cpp |
 #############################################
 # Custom command for GratingMagic_autogen\EWIEGA46WW\qrc_resources.cpp
 
-build GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND D$:/QTprojects/GratingMagic/resources.qrc CMakeFiles/GratingMagic_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json D$:/QTprojects/GratingMagic/stylesheet.qss D$:/Qt/6.9.0/mingw_64/bin/rcc.exe D$:/Qt/6.9.0/mingw_64/bin/rcc.exe || GratingMagic_autogen GratingMagic_autogen_timestamp_deps
+build GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp | ${cmake_ninja_workdir}GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp: CUSTOM_COMMAND D$:/QTprojects/GratingMagic/resources.qrc CMakeFiles/GratingMagic_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json D$:/QTprojects/GratingMagic/help_guide.md D$:/QTprojects/GratingMagic/stylesheet.qss D$:/Qt/6.9.0/mingw_64/bin/rcc.exe D$:/Qt/6.9.0/mingw_64/bin/rcc.exe || GratingMagic_autogen GratingMagic_autogen_timestamp_deps
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\QTprojects\GratingMagic\build\Desktop_Qt_6_9_0_MinGW_64_bit-Debug && D:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/GratingMagic_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json Debug"
   DESC = Automatic RCC for resources.qrc
   restat = 1

@@ -376,8 +376,8 @@ D:/QTprojects/GratingMagic/mainwindow.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:D:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
-D:/QTprojects/GratingMagic/main.cpp
 D:/QTprojects/GratingMagic/mainwindow.cpp
+D:/QTprojects/GratingMagic/main.cpp
 D:/QTprojects/GratingMagic/ImageProcessor.h
  mmc:Q_OBJECT
  mdp:D:/QTprojects/GratingMagic/ImageProcessor.h

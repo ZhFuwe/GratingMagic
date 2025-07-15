@@ -7,7 +7,11 @@
 	"CROSS_CONFIG" : false,
 	"GENERATOR" : "Ninja",
 	"INCLUDE_DIR" : "D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/include",
-	"INPUTS" : [ "D:/QTprojects/GratingMagic/stylesheet.qss" ],
+	"INPUTS" : 
+	[
+		"D:/QTprojects/GratingMagic/help_guide.md",
+		"D:/QTprojects/GratingMagic/stylesheet.qss"
+	],
 	"LOCK_FILE" : "D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/GratingMagic_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "--no-zstd", "-name", "resources" ],
