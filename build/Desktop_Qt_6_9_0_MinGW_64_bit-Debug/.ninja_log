@@ -1,0 +1,17 @@
+# ninja log v6
+132	1339	7742699162869445	build.ninja	3841e60ef7ac44f9
+918	4568	7742642374977165	CMakeFiles/GratingMagic.dir/mainwindow.cpp.obj	8b769195a471f4ad
+154	891	7742642373595169	GratingMagic_autogen/mocs_compilation.cpp	c9b339f1c9f0ca91
+8	133	7742699150787669	D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	10effde0cb8556f7
+154	891	7742642373595169	GratingMagic_autogen/timestamp	c9b339f1c9f0ca91
+154	891	7742642373595169	D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/timestamp	c9b339f1c9f0ca91
+892	3076	7742642374718017	CMakeFiles/GratingMagic.dir/GratingMagic_autogen/mocs_compilation.cpp.obj	353c51413117035f
+154	891	7742642373595169	D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/mocs_compilation.cpp	c9b339f1c9f0ca91
+906	3224	7742642374859758	CMakeFiles/GratingMagic.dir/main.cpp.obj	491830d97b4c3c1a
+135	336	7742302462996093	GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp	83d44ef344d8dff3
+135	336	7742302462996093	D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp	83d44ef344d8dff3
+336	426	7742302463590611	CMakeFiles/GratingMagic.dir/GratingMagic_autogen/EWIEGA46WW/qrc_resources.cpp.obj	10a5c2e829ec9e35
+4568	5001	7742642411483071	GratingMagic.exe	ad3090e1a0ea6f73
+142	238	7742352035899900	CMakeFiles/GratingMagic.dir/resources/GratingMagic.rc.obj	a37acd4a2e4e2066
+133	1383	7742699162869445	build.ninja	3841e60ef7ac44f9
+10	130	7742699163443989	D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	10effde0cb8556f7

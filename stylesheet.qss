@@ -1,0 +1,87 @@
+/* stylesheet.qss (深色修改版) */
+QMainWindow, QDialog {
+    background-color: #2b2b2b; /* 更深的背景 */
+}
+
+QGroupBox {
+    color: #e0e0e0; /* 文字颜色稍稍调暗以适应新背景 */
+    font-weight: bold;
+    border: 1px solid #444444; /* 边框变暗 */
+    border-radius: 4px;
+    margin-top: 6px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 5px;
+}
+
+QLabel {
+    color: #e0e0e0;
+    font-size: 13px;
+}
+
+QPushButton {
+    background-color: #4a4a4a; /* 按钮背景变暗 */
+    color: #e0e0e0;
+    border: 1px solid #3c3c3c; /* 按钮边框变暗 */
+    padding: 8px;
+    min-height: 20px;
+    border-radius: 4px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a; /* 悬停时更亮一点以提供反馈 */
+    border: 1px solid #666666;
+}
+QPushButton:pressed {
+    background-color: #404040; /* 按下时更暗 */
+}
+QPushButton:disabled {
+    color: #777777;
+    background-color: #3e3e3e;
+}
+
+/* “保存”按钮的特殊样式 */
+#saveButton {
+    background-color: #006cbf; /* 主题蓝色变深 */
+    font-weight: bold;
+}
+#saveButton:hover {
+    background-color: #0078d7; /* 悬停时恢复原亮度 */
+}
+
+QListWidget {
+    background-color: #222222; /* 列表背景变得非常深 */
+    border: 1px solid #444444;
+    color: white;
+    padding: 5px;
+}
+QListWidget::item {
+    border: none;
+    padding: 5px;
+    border-radius: 3px;
+}
+QListWidget::item:hover {
+    background-color: #3a3a3a; /* 悬停颜色变暗 */
+}
+QListWidget::item:selected {
+    background-color: #006cbf; /* 选中颜色与保存按钮保持一致 */
+    color: white;
+}
+
+
+
+QRadioButton {
+    color: #e0e0e0;
+}
+
+QScrollArea {
+    border: none;
+}
+
+/* 预览区背景 */
+#previewLabel {
+    background-color: #222222; /* 与列表背景保持一致 */
+    border: 1px dashed #444444; /* 边框变暗 */
+}
