@@ -26,9 +26,9 @@ QPushButton {
     background-color: #4a4a4a; /* 按钮背景变暗 */
     color: #e0e0e0;
     border: 1px solid #3c3c3c; /* 按钮边框变暗 */
-    padding: 8px;
-    min-height: 20px;
-    border-radius: 4px;
+    padding: 4px;
+    min-height: 10px;
+    border-radius: 6px;
 }
 QPushButton:hover {
     background-color: #5a5a5a; /* 悬停时更亮一点以提供反馈 */

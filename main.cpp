@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
             break;
         }
     }
+        qputenv("QT_IMAGEIO_MAXALLOC", "0");
+
     MainWindow w;
     w.setFixedSize(900, 680);
     w.show();

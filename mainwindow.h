@@ -1,3 +1,4 @@
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -5,6 +6,7 @@
 #include <QList>
 #include <QString>
 #include <QImage>
+#include <QSize>
 
 // 前向声明
 class QLabel;
@@ -15,6 +17,17 @@ class QSpinBox;
 class QScrollArea;
 class QDoubleSpinBox;
 
+enum class SizeMode {
+    Automatic,
+    ManualOverride
+};
+
+/**
+ * @class MainWindow
+ * @brief GratingMagic应用程序的主窗口类。
+ *
+ * 负责管理所有UI控件、用户交互、图像数据处理以及核心的光栅合成算法。
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -22,7 +35,7 @@ class MainWindow : public QMainWindow
 public:
     /**
      * @brief 构造函数，初始化主窗口。
-     * @param parent 父控件指针。
+     * @param parent 父控件指针，默认为nullptr。
      */
     MainWindow(QWidget *parent = nullptr);
 
@@ -32,7 +45,6 @@ public:
     ~MainWindow();
 
 private slots:
-    // === UI交互槽函数 ===
 
     /**
      * @brief 响应“导入图像”按钮点击，打开文件对话框并加载图像。
@@ -75,24 +87,29 @@ private slots:
      */
     void onPrintSizeEditingFinished();
 
+    // 当任何参数（非打印宽度）变化时，调用此槽函数以重置
+    void onCoreParametersChanged(bool showResetDialog);
+    void onResetPrintSizeClicked();// 响应“重置打印尺寸”按钮点击的槽函数
+
+    void onTestButtonClicked(); //用于测试的槽函数
+
     /**
-     * @brief 显示帮助。
+     * @brief 响应“帮助”按钮点击，显示一个包含详细操作指南的对话框。
      */
     void showHelpDialog();
+
+
 
 private:
     // === 数据模型 ===
 
     /// @brief 存储用户导入的原始图像的文件路径。这是所有数据的“源头”。
     QList<QString> imagePaths;
-    /// @brief 缓存从磁盘加载的、未经任何修改的原始QImage对象。所有缩放都以此为基础。
-    QList<QImage> originalImages;
-    /// @brief 存储当前用于预览和最终生成的工作图像。它可能是原始图像的拷贝，也可能是缩放后的版本。
-    QList<QImage> processedImages;
 
     // === UI控件成员变量 ===
     QScrollArea* scrollArea;
     QLabel* previewLabel;
+    QLabel* outputPixelSizeLabel;
     QPushButton* importButton;
     QPushButton* helpButton;
     QListWidget* imageListWidget;
@@ -103,6 +120,7 @@ private:
     QRadioButton* horizontalRadio;
     QSpinBox* sliceWidthSpinBox;
     QDoubleSpinBox* desiredPrintSizeSpinBox;
+    QPushButton* resetPrintSizeButton;
     QDoubleSpinBox* actualLpiSpinBox;
     QDoubleSpinBox* calibratedLpiSpinBox;
     QPushButton* saveButton;
@@ -130,43 +148,51 @@ private:
     void updateImageList();
 
     /**
-     * @brief 根据 processedImages 列表的内容，生成缩略图并更新左侧的预览区。
+     * @brief 根据 imagePaths 列表和当前参数，按需加载并生成缩略图，更新左侧预览区。
      */
     void updateAndShowPreview();
 
     /**
-     * @brief 【核心算法】根据给定的图像序列和参数，交织生成最终的光栅图像。
-     * @param images 输入的图像列表。
+     * @brief 用于生成预览图的函数
+     */
+    QImage generateLenticularPreview(const QList<QImage>& thumbnailImages, bool isVertical, int sliceWidth);
+
+    /**
+     * @brief 根据当前参数计算对打印机的最终DPI精度要求。
+     */
+    double calculateRequiredDPI();
+
+    /**
+     * @brief 【核心算法】用源图像的裸数据行(sourceScanlines)填充目标大图(resultImage)的指定行。
+     * @param resultImage 对最终结果图像的引用，此函数将直接在上面填充像素。
+     * @param sourceScanlines 包含了所有源图像【单行】裸像素数据的列表。
+     * @param y 正在处理的行在目标图像中的Y坐标。
+     * @param stripHeight 此参数在此模型中固定为1。
      * @param isVertical 是否为纵向切分。
      * @param sliceWidth 每个切片的像素宽度。
-     * @return 返回合成后的光栅图像。
      */
-    QImage generateLenticularImage(const QList<QImage>& images, bool isVertical, int sliceWidth);
+    void generateLenticularStrip(QImage& resultImage, const QList<QByteArray>& sourceScanlines, int y, int stripHeight, bool isVertical, int sliceWidth);
+
 
     /**
      * @brief 【核心计算】根据物理参数计算目标像素尺寸。
-     * @param physical_size_cm 期望的物理尺寸（厘米）。
-     * @return 计算出的目标像素宽度。
+     * @param physical_width_cm 期望的物理尺寸（厘米）。
+     * @param original_image_size 原始图像的尺寸，用于计算宽高比。
+     * @return 计算出的目标像素尺寸(QSize)。
      */
-    QSize calculateTargetPixels(double physical_width_cm);
+    QSize calculateTargetPixels(double physical_width_cm, const QSize& original_image_size);
 
     /**
      * @brief 【核心计算】根据像素尺寸反向计算物理尺寸。
-     * @return 计算出的推荐物理尺寸（厘米）。
+     * @param current_pixel_size 当前图像的像素尺寸。
+     * @return 计算出的推荐物理尺寸(QSizeF)。
      */
-    QSizeF calculatePhysicalSize();
+    QSizeF calculatePhysicalSize(const QSize& current_pixel_size);
 
-    /**
-     * @brief 【核心操作】对图像执行缩放。此操作总是基于originalImages。
-     * @param targetWidth 目标像素尺寸。
-     */
-    void applyScaling(const QSize& targetSize);
+    /// @brief 记录当前尺寸模式是“自动”还是“手动覆盖”。
+    SizeMode currentSizeMode = SizeMode::Automatic;
 
-    /**
-     * @brief 【核心操作】撤销缩放，将工作图像恢复为原始图像。
-     */
-    void revertScaling();
-
-
+    /// @brief 只在手动模式下生效，存储用户设定的物理宽度。
+    double manualPrintWidthCm = 0.0;
 };
 #endif // MAINWINDOW_H

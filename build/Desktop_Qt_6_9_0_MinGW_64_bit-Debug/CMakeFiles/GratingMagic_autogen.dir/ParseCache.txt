@@ -4,6 +4,7 @@ D:/QTprojects/GratingMagic/mainwindow.h
  mdp:D:/QTprojects/GratingMagic/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/GratingMagic_autogen/moc_predefs.h
  mdp:D:/QTprojects/GratingMagic/mainwindow.h
  mdp:D:/Qt/6.9.0/mingw_64/include/QtCore/QList
+ mdp:D:/Qt/6.9.0/mingw_64/include/QtCore/QSize
  mdp:D:/Qt/6.9.0/mingw_64/include/QtCore/QString
  mdp:D:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h
  mdp:D:/Qt/6.9.0/mingw_64/include/QtCore/q20functional.h

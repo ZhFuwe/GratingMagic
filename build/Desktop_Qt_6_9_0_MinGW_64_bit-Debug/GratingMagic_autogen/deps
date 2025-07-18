@@ -10,6 +10,7 @@ GratingMagic_autogen/timestamp: \
 	D:/QTprojects/GratingMagic/mainwindow.h \
 	D:/QTprojects/GratingMagic/resources.qrc \
 	D:/Qt/6.9.0/mingw_64/include/QtCore/QList \
+	D:/Qt/6.9.0/mingw_64/include/QtCore/QSize \
 	D:/Qt/6.9.0/mingw_64/include/QtCore/QString \
 	D:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h \
 	D:/Qt/6.9.0/mingw_64/include/QtCore/q20functional.h \
