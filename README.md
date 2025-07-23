@@ -10,7 +10,7 @@
 <p align="center">
   <strong>一款易用、强大的光栅卡图像合成工具</strong>
   <br>
-  轻松将您的图像序列转换为具有动态效果的、可供专业打印的光栅图像。
+  轻松将图像序列转换为具有动态效果的光栅图像。
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Platform-Windows-blue.svg" alt="Platform">
